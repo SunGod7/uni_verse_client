@@ -13,4 +13,8 @@
 ![](IMG-0710.jpg)
 ![](IMG-0711.jpg)
 
+### ERD (entity relationship diagram)
+![](IMG-0712.jpg)
+
+
 
