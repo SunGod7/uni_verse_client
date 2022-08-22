@@ -1,22 +1,217 @@
+import './FilterIndexForm.css'
+
 import { Form, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import messages from '../shared/AutoDismissAlert/messages'
 import axios from 'axios'
 
+import { getAllLyrics } from '../../api/lyrics'
+import CrudLyric from './CrudLyric'
+import LyricListModal from './LyricListModal'
 
-// const handleSubmit = (e) => {
-//     e.preventDefault()
 
-//     console.log(`\nsubmitted value:\n${searchValue}`)
+const FilterIndexForm = (props) => {
 
-//     axios.get(`https://api.lyrics.ovh/v1/?q=${searchValue}`)
-//         .then((res) => {
-//             const data = res.data.items
-//             // console.log(data)
-            
-//             handleViewBooksInModal(data)
-            
-//         })
-//         .catch(err => console.log(err))
-// }
+    const { user, msgAlert } = props
 
-// export default FilterIndexForm
+    const [lyrics, setLyrics] = useState(null)
+    const [searchValue, setSearchValue] = useState('')
+    const [lyricsToView, setLyricsToView] = useState([])
+    const [createLyricModalShow, setCreateLyricModalShow] = useState(false)
+    const [showLyricViewModal, setShowLyricViewModal] = useState(false)
+    const [lyricInViewModal, setLyricInViewModal] = useState({})
+    const [updateTaggedLyrics, setUpdateTaggedLyrics] = useState(true)
+
+    // console.log('\ncurrent search value:\n', searchValue)
+    // console.log('\ncurrent lyrics to view:\n', lyricsToView)
+
+    // console.log('lyric being viewed:',lyricInViewModal)
+
+    const lyricToShow = (e) => {
+        // console.log(e.target.id)
+        const lyricArtist = e.target.id
+        setLyricInViewModal(() => {
+            let viewedLyric = lyricsToView.filter(lyric => lyric.artist === lyricArtist)
+
+            if (lyrics.filter(lyric => lyric.artist === lyricArtist).length > 0) {
+                console.log('Viewed lyric was in database')
+                viewedLyric = lyrics.filter(lyric => lyric.artist === lyricArtist)
+                // console.log('This is the lyric in database:')
+                // console.log(viewedLyric[0])
+            } else {
+                console.log('Viewed lyric was NOT in database, only in lyricsToView')
+                // console.log('This was the lyric in blyricsToView:')
+                // console.log(viewedLyric[0])
+            }
+
+            // console.log('lyric view modal being updated to:', viewedLyric[0])
+
+            return (
+                viewedLyric[0]
+            )
+        })
+        setShowLyricViewModal(true)
+    }
+
+    useEffect(() => {
+        // console.log('use effect works')
+        // console.log('props:\n',props)
+        getAllLyrics()
+            .then(res => {
+                setLyrics(res.data.lyrics.reverse())
+                return
+            })
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error getting lyrics',
+                    message: messages.getLyricsFailure,
+                    variant: 'danger'
+                })
+            })
+    }, [])
+
+    useEffect(() => {
+        // console.log('use effect works')
+        console.log('props:\n', props)
+        getAllLyrics()
+            .then(res => {
+                setLyrics(res.data.lyrics)
+                return
+            })
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error getting lyrics',
+                    message: messages.getLyricsFailure,
+                    variant: 'danger'
+                })
+            })
+    }, [updateTaggedLyrics])
+
+    // show a prompt to Tag lyrics if no lyrics exist, or an error message if database cannot be connected to
+    if (!lyrics) {
+        return (
+            <h1
+                style={{ fontFamily: 'Times', color: 'white', textShadow: '0.25px 0.25px 4px black, -0.25px -0.25px 4px black' }}>
+                Error connecting to database...
+            </h1>
+
+        )
+    }
+    // else if (lyrics.length === 0) {
+    //     return (
+    //         <h1 
+    //             style={{fontFamily: 'Times', color: 'white', textShadow: '0.25px 0.25px 4px black, -0.25px -0.25px 4px black'}}>
+    //                 No one has tagged that yet, <br></br>
+    //                 Search it and be the first!
+    //         </h1>
+    //     )
+    // }
+
+    const handleChange = (e) => {
+        setSearchValue(() => {
+            let updatedSearchValue = e.target.value
+
+            return (updatedSearchValue)
+        })
+    }
+
+    const handleViewLyricsInModal = (data) => {
+        setCreateLyricModalShow(true)
+        setLyricsToView(() => {
+            return (data.map(lyric => {
+                
+                return ({
+                    title: lyric.title,
+                    artist: lyric.artist ? lyric.artist.map((artist, i) => {
+                        if (i === 0) return artist
+                        else return ', ' + artist
+                    }) : null,
+                    
+                })
+            }))
+        })
+    }
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        console.log(`\nsubmitted value:\n${searchValue}`)
+        
+        axios.get(`https://api.lyrics.ovh/v1/?q=${searchValue}`)
+            .then((res) => {
+                const data = res.data.items
+                // console.log(data)
+
+                handleViewLyricsInModal(data)
+
+            })
+            .catch(err => console.log(err))
+    }
+    return (
+        <>
+            <Form
+                onSubmit={handleSubmit}
+                className="d-flex"
+                style={{ maxWidth: '550px', width: '100%', padding: '10px' }}
+            >
+                <Form.Control
+                    id='search-lyric-field'
+                    autoComplete='off'
+                    type="search"
+                    placeholder="Any lyric title or author here..."
+                    className="me-2"
+                    aria-label="Search the internet"
+                    value={searchValue}
+                    onChange={handleChange}
+                    required
+                />
+                <Button type='submit' style={{ whiteSpace: 'nowrap' }} variant="outline-secondary">
+                    Search
+                </Button>
+            </Form>
+            {lyrics.length === 0 ? 
+                <>
+                    <h1 
+                        style={{fontFamily: 'Times', color: 'white', textShadow: '0.25px 0.25px 4px black, -0.25px -0.25px 4px black'}}>
+                            Let's search some lyrics to add!
+                    </h1>
+                </>
+            :
+                <>
+                    <h1 style={{fontFamily: 'Times', color: 'white', textShadow: '0.25px 0.25px 4px black, -0.25px -0.25px 4px black'}}>All tagged Lyrics:</h1>
+
+                    <LyricListModal 
+                        user={user}
+                        msgAlert={msgAlert}
+                        lyricsToView={lyrics}
+                        lyricsAlreadyTagged={lyrics}
+                        setShowLyricViewModal={lyricToShow}
+                        setUpdateTaggedLyrics={() => {setUpdateTaggedLyrics(prev => !prev)}}
+                    />
+                    
+                </>
+            }
+
+            <CrudLyric 
+                user={user}
+                lyrics={lyrics}
+                lyricsToView={lyricsToView}
+                show={createLyricModalShow}
+                lyricToShow={lyricToShow}
+                lyricInViewModal={lyricInViewModal}
+                showLyricViewModal={showLyricViewModal}
+                setShowLyricViewModal={setShowLyricViewModal}
+                setUpdateTaggedLyrics={() => {setUpdateTaggedLyrics(prev => !prev)}}
+                msgAlert={msgAlert}
+                // triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setCreateLyricModalShow(false)}
+            />
+
+        </>
+        
+    )
+}
+
+export default FilterIndexForm
