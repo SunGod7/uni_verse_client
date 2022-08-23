@@ -4,7 +4,6 @@ import { Form, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import messages from '../shared/AutoDismissAlert/messages'
 import axios from 'axios'
-
 import { getAllLyrics } from '../../api/lyrics'
 import CrudLyric from './CrudLyric'
 import LyricListModal from './LyricListModal'
@@ -14,8 +13,11 @@ const FilterIndexForm = (props) => {
 
     const { user, msgAlert } = props
 
+    // const [artist, setArtist] = useState('')
+    // const [song, setSong] = useState('')
+    // const [lyrics, setLyrics] = useState('')
     const [lyrics, setLyrics] = useState(null)
-    const [searchValue, setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState({artist: '', title: ''})
     const [lyricsToView, setLyricsToView] = useState([])
     const [createLyricModalShow, setCreateLyricModalShow] = useState(false)
     const [showLyricViewModal, setShowLyricViewModal] = useState(false)
@@ -40,11 +42,11 @@ const FilterIndexForm = (props) => {
                 // console.log(viewedLyric[0])
             } else {
                 console.log('Viewed lyric was NOT in database, only in lyricsToView')
-                // console.log('This was the lyric in blyricsToView:')
+                // console.log('This was the lyric in lyricsToView:')
                 // console.log(viewedLyric[0])
             }
 
-            // console.log('lyric view modal being updated to:', viewedLyric[0])
+           
 
             return (
                 viewedLyric[0]
@@ -53,25 +55,25 @@ const FilterIndexForm = (props) => {
         setShowLyricViewModal(true)
     }
 
-    useEffect(() => {
-        // console.log('use effect works')
-        // console.log('props:\n',props)
-        getAllLyrics()
-            .then(res => {
-                setLyrics(res.data.lyrics.reverse())
-                return
-            })
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error getting lyrics',
-                    message: messages.getLyricsFailure,
-                    variant: 'danger'
-                })
-            })
-    }, [])
+    // useEffect(() => {
+       
+    //     //  console.log('props:\n', props)
+    //     getAllLyrics()
+    //         .then(res => {
+    //             setLyrics(res.data.lyrics.reverse())
+    //             return
+    //         })
+    //         .catch(err => {
+    //             msgAlert({
+    //                 heading: 'Error getting lyrics',
+    //                 message: messages.getLyricsFailure,
+    //                 variant: 'danger'
+    //             })
+    //         })
+    // }, [])
 
     useEffect(() => {
-        // console.log('use effect works')
+         //console.log('use effect works')
         console.log('props:\n', props)
         getAllLyrics()
             .then(res => {
@@ -97,21 +99,13 @@ const FilterIndexForm = (props) => {
 
         )
     }
-    // else if (lyrics.length === 0) {
-    //     return (
-    //         <h1 
-    //             style={{fontFamily: 'Times', color: 'white', textShadow: '0.25px 0.25px 4px black, -0.25px -0.25px 4px black'}}>
-    //                 No one has tagged that yet, <br></br>
-    //                 Search it and be the first!
-    //         </h1>
-    //     )
-    // }
+    
 
     const handleChange = (e) => {
         setSearchValue(() => {
-            let updatedSearchValue = e.target.value
+            let updatedsetSearchValue = e.target.value
 
-            return (updatedSearchValue)
+            return (updatedsetSearchValue)
         })
     }
 
@@ -137,12 +131,16 @@ const FilterIndexForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log(`\nsubmitted value:\n${searchValue}`)
+         console.log(`\nsubmitted value:\n${searchValue}`)
+        //console.log(`\nsubmitted value:\n${artistName}/${songName}`)
         
-        axios.get(`https://api.lyrics.ovh/v1/?q=${searchValue}`)
+        
+        //  axios.get(`cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/tracks.lyrics.get?track_id=${searchValue}page=1&page_size=10
+        //  &country=us&f_has_lyrics=1&apikey=${process.env.REACT_APP_MM_KEY}`)
+         axios.get(`https://api.lyrics.ovh/v1/${searchValue}`)
             .then((res) => {
                 const data = res.data.items
-                // console.log(data)
+                 console.log(data)
 
                 handleViewLyricsInModal(data)
 
@@ -156,19 +154,34 @@ const FilterIndexForm = (props) => {
                 className="d-flex"
                 style={{ maxWidth: '550px', width: '100%', padding: '10px' }}
             >
+                
                 <Form.Control
                     id='search-lyric-field'
                     autoComplete='off'
                     type="search"
-                    placeholder="Any lyric title or author here..."
+                    placeholder="artist here..."
                     className="me-2"
                     aria-label="Search the internet"
                     value={searchValue}
                     onChange={handleChange}
                     required
                 />
+                {/* <Form.Control
+                    id='search-lyric-field'
+                    autoComplete='off'
+                    type="search"
+                    placeholder="song Name..."
+                    className="me-2"
+                    aria-label="Search the internet"
+                    value={searchValue}
+                    onChange={handleChange}
+                    required
+                /> */}
+              
+                
+                
                 <Button type='submit' style={{ whiteSpace: 'nowrap' }} variant="outline-secondary">
-                    Search
+                    Find Lyrics
                 </Button>
             </Form>
             {lyrics.length === 0 ? 
@@ -212,6 +225,12 @@ const FilterIndexForm = (props) => {
         </>
         
     )
+
+
+
 }
+
+
+
 
 export default FilterIndexForm
