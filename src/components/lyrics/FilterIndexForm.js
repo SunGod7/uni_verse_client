@@ -1,5 +1,5 @@
-import './FilterIndexForm.css'
-
+ import './FilterIndexForm.css'
+ 
 import { Form, Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -14,7 +14,7 @@ const FilterIndexForm = (props) => {
     const { user, msgAlert } = props
 
     // const [artist, setArtist] = useState('')
-    // const [song, setSong] = useState('')
+    // const [title, setTitle] = useState('')
     // const [lyrics, setLyrics] = useState('')
     const [lyrics, setLyrics] = useState(null)
     const [searchValue, setSearchValue] = useState({artist: '', title: ''})
@@ -32,8 +32,9 @@ const FilterIndexForm = (props) => {
     const lyricToShow = (e) => {
         // console.log(e.target.id)
         const lyricArtist = e.target.id
+        const lyricTitle = e.target.id
         setLyricInViewModal(() => {
-            let viewedLyric = lyricsToView.filter(lyric => lyric.artist === lyricArtist)
+            let viewedLyric = lyricsToView.filter(lyric => lyric.artist === lyricArtist && lyric.title === lyricTitle)
 
             if (lyrics.filter(lyric => lyric.artist === lyricArtist).length > 0) {
                 console.log('Viewed lyric was in database')
@@ -55,22 +56,7 @@ const FilterIndexForm = (props) => {
         setShowLyricViewModal(true)
     }
 
-    // useEffect(() => {
-       
-    //     //  console.log('props:\n', props)
-    //     getAllLyrics()
-    //         .then(res => {
-    //             setLyrics(res.data.lyrics.reverse())
-    //             return
-    //         })
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error getting lyrics',
-    //                 message: messages.getLyricsFailure,
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }, [])
+    
 
     useEffect(() => {
          //console.log('use effect works')
@@ -103,9 +89,9 @@ const FilterIndexForm = (props) => {
 
     const handleChange = (e) => {
         setSearchValue(() => {
-            let updatedsetSearchValue = e.target.value
+            let updatedSearchValue = e.target.value
 
-            return (updatedsetSearchValue)
+            return (updatedSearchValue)
         })
     }
 
@@ -119,29 +105,33 @@ const FilterIndexForm = (props) => {
                     artist: lyric.artist ? lyric.artist.map((artist, i) => {
                         if (i === 0) return artist
                         else return ', ' + artist
-                    }) : null,
+                    }) : null
                     
                 })
             }))
         })
     }
-
+    
+        
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
+
          console.log(`\nsubmitted value:\n${searchValue}`)
         //console.log(`\nsubmitted value:\n${artistName}/${songName}`)
         
-        
+        // if (artist === "" || title === "") {
+        //     return;
+        // }
         //  axios.get(`cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/tracks.lyrics.get?track_id=${searchValue}page=1&page_size=10
         //  &country=us&f_has_lyrics=1&apikey=${process.env.REACT_APP_MM_KEY}`)
          axios.get(`https://api.lyrics.ovh/v1/${searchValue}`)
             .then((res) => {
-                const data = res.data.items
+                const data = res.data
                  console.log(data)
-
+                 //setLyrics(res.data.lyrics)
                 handleViewLyricsInModal(data)
 
             })
@@ -162,7 +152,7 @@ const FilterIndexForm = (props) => {
                     placeholder="artist here..."
                     className="me-2"
                     aria-label="Search the internet"
-                    value={searchValue}
+                    value={searchValue.artist}
                     onChange={handleChange}
                     required
                 />
@@ -173,7 +163,7 @@ const FilterIndexForm = (props) => {
                     placeholder="song Name..."
                     className="me-2"
                     aria-label="Search the internet"
-                    value={searchValue}
+                    value={searchValue.title}
                     onChange={handleChange}
                     required
                 /> */}
@@ -218,7 +208,6 @@ const FilterIndexForm = (props) => {
                 setShowLyricViewModal={setShowLyricViewModal}
                 setUpdateTaggedLyrics={() => {setUpdateTaggedLyrics(prev => !prev)}}
                 msgAlert={msgAlert}
-                // triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setCreateLyricModalShow(false)}
             />
 
@@ -234,3 +223,13 @@ const FilterIndexForm = (props) => {
 
 
 export default FilterIndexForm
+
+
+
+
+
+
+
+
+
+
