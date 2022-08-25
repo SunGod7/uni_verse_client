@@ -29,12 +29,12 @@ const LyricViewModal = (props) => {
             <Row className='justify-content-center'>
                 <div style={{display:'flex', justifyContent: 'center', margin:'20px'}}>
                     <Card bg={'secondary'} text={'light'} style={{ width: 'fit-content', height: 'fit-content', margin: '20px', justifyContent: 'center' }}>
-                        <Card.Img variant="top" src={lyricInViewModal.image} style={{ height: '300px', width: '190px' }} />
+                        <Card.Img variant="top" src={lyricInViewModal.img} style={{ height: '300px', width: '190px' }} />
                     </Card>
                     <Col>
                         <h2 style={{margin:'20px'}}>{lyricInViewModal.title}</h2>
-                        <h5 style={{margin:'20px', fontStyle:'italic'}}>by {lyricInViewModal.authors}</h5>
-                        <h5 style={{margin:'20px'}}>Publisher: {lyricInViewModal.publisher}</h5>
+                        <h5 style={{margin:'20px', fontStyle:'italic'}}>by {lyricInViewModal.artist}</h5>
+                        
                         <ReasonTagged 
                             user={user}
                             msgAlert={msgAlert}
@@ -45,9 +45,9 @@ const LyricViewModal = (props) => {
             </Row>
             
             
-            <Row className='justify-content-center'>
+            {/* <Row className='justify-content-center'>
                 {lyricInViewModal.description}
-            </Row>
+            </Row> */}
             {user 
             ?
                 <Row>
@@ -79,14 +79,14 @@ const LyricViewModal = (props) => {
             <Row className='justify-content-center'>
                 <div style={{display:'flex', justifyContent: 'center', margin:'20px'}}>
                     <Card bg={'secondary'} text={'light'} style={{ width: 'fit-content', height: 'fit-content', margin: '20px', justifyContent: 'center' }}>
-                        <Card.Img variant="top" src={lyricInViewModal.image} style={{ height: '300px', width: '190px' }} />
+                        <Card.Img variant="top" src={lyricInViewModal.img} style={{ height: '300px', width: '190px' }} />
                     </Card>
                 </div>
             </Row>
             <Row className='justify-content-center'>
                 <h2 style={{margin:'5px', textAlign:'center'}}>{lyricInViewModal.title}</h2>
-                <h5 style={{margin:'5px', textAlign:'center',  fontStyle:'italic'}}>by {lyricInViewModal.authors}</h5>
-                <h5 style={{margin:'5px', textAlign:'center', marginBottom: '30px'}}>Publisher: {lyricInViewModal.publisher}</h5>
+                <h5 style={{margin:'5px', textAlign:'center',  fontStyle:'italic'}}>by {lyricInViewModal.artist}</h5>
+                
                 <ReasonTagged 
                     user={user}
                     msgAlert={msgAlert}
@@ -94,10 +94,10 @@ const LyricViewModal = (props) => {
                 />
                 <h6>&nbsp;</h6>
             </Row>
-            <Row className='justify-content-center'>
+            {/* <Row className='justify-content-center'>
                 {lyricInViewModal.description}
                 
-            </Row>
+            </Row> */}
             {user 
             ?
                 <Row>

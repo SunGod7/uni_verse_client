@@ -44,7 +44,7 @@ const LyricListModal = (props) => {
                 else filteredLyric = {...filteredLyric,
                     ...(
                         <Card bg={'secondary'} text={'light'} style={{ width: 'fit-content', margin: '15px', justifyContent: 'center' }} key={i}>
-                            {/* <Card.Img variant="top" src={lyric.image} style={{ height: '250px', width: '180px' }} /> */}
+                            <Card.Img variant="top" src={lyric.image} style={{ height: '250px', width: '180px' }} />
                             <Card.Body>
                                 <div style={{ textAlign: 'center', display: 'flex' }}>
 
