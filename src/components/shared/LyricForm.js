@@ -6,7 +6,7 @@ const LyricForm = (props) => {
 
     return (
         <Container className="justify-content-center">
-            <h3>{heading}</h3>
+            <h3 style={{ color: 'yellow'}}>{heading}</h3>
             <Form onSubmit={ handleSubmit }>
                 <Form.Label htmlFor="artist">Artist</Form.Label>
                 <Form.Control

@@ -7,7 +7,7 @@ const messages = {
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
 	getLyricsFailure: "Can't connect to the database...",
-	createLyricSuccess: 'Lyric added to Tagged Lyrics page!',
+	createLyricSuccess: ' Lyrics are added to page!',
 	createLyricFailure: 'Something went wrong, could not add that to Tagged Lyric...'
 
 }

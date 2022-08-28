@@ -11,6 +11,12 @@ const linkStyle = {
 }
 const authenticatedOptions = (
 	<>
+        <Nav.Link className="nav-element" >
+			<Link to='/addLyric' style={linkStyle}>
+				Create Lyrics
+			</Link>
+		</Nav.Link>
+		<div className='vr' />
 		<Nav.Link className="nav-element" >
 			<Link to='change-password' style={linkStyle}>
 				Change Password
