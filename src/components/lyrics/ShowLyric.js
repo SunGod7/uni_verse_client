@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'//,
 // useParams will allow us to see our parameters
 // useNavigate will allow us to navigate to a specific page
 
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Card, Button, Image } from 'react-bootstrap'
 
 import LoadingScreen from '../shared/LoadingScreen'
 import { getOneLyric, updateLyric, removeLyric } from '../../api/lyrics'
@@ -104,8 +104,8 @@ const ShowLyric = (props) => {
         <>
             <Container className="fluid">
                 <Card bg={'warning'} text={'dark'} border={"dark"} style={{ width: 'fit-content', margin: '15px', justifyContent: 'center' }}>
-                {/* <Card.Img variant="top" src={lyric.img} style={{ height: '300px', width: '190px' }} /> */}
-                    <Card.Header>{lyric.artist}</Card.Header>
+                <Card.Img variant="top" src="{{../images/IMG-0715.jpg}}" style={{ height: '150px', width: '150px' }} />
+                    {/* <Card.Header>{lyric.artist}</Card.Header> */}
                     <Card.Body>
                         <Card.Text>
                             <div><small>Artist: {lyric.artist}</small></div>

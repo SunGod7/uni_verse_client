@@ -33,7 +33,7 @@ const ShowComment = (props) => {
 
     return (
         <>
-            <Card className="m-2">
+            <Card className="m-2" bg={'secondary'} text={'danger'} border={"warning"} style={{ width: 'fit-content', margin: '15px', justifyContent: 'center' }}>
                 <Card.Header>{comment.artist}</Card.Header>
                 <Card.Body>
                     <small>{comment.note}</small><br/>
