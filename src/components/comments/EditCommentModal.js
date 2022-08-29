@@ -12,6 +12,19 @@ const EditCommentModal = (props) => {
     const [comment, setComment] = useState(props.comment)
     //const [comment, setComment] = useState('')
     const handleChange = (e) => {
+        
+        // setComment((prev) => {
+        //     let updatedComment = e.target.value
+
+        //     return {
+        //         id: prev.id,
+        //         note: updatedComment,
+                
+        //     }
+        // })
+
+
+
         setComment(prevComment => {
             let value = e.target.value
             const name = e.target.name

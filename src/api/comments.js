@@ -16,8 +16,8 @@ export const createComment = (user, lyricId, note) => {
 		url: `${apiUrl}/comments/${lyricId}`,
 		method: 'POST',
 		data: {
-			note: note,
-            owner: user
+			note: note
+           
 		},
 	})
 }
