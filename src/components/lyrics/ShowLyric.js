@@ -115,33 +115,34 @@ const ShowLyric = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-
-
-                        {/* {
-                            lyric.owner && user && lyric.owner._id === user._id
-                                ? */}
                         <Button onClick={() => setCommentModalShow(true)}
                             className="m-2" variant="info"
                         >
                             Give {lyric.artist} a comment!
                         </Button>
 
-                        <Button onClick={() => setEditModalShow(true)}
-                            className="m-2"
-                            variant="success"
-                        >
-                            Edit Lyrics
-                        </Button>
-                        <Button onClick={() => removeTheLyric()}
-                            className="m-2"
-                            variant="danger"
-                        >
-                            DELETE {lyric.artist}
-                        </Button>
+                        {/* {
+                            lyric.owner && user && lyric.owner._id === user._id
+                                ? */}
+                                <>
 
-                        {/* :
-                                null */}
-                        {/* }  */}
+
+                                    <Button onClick={() => setEditModalShow(true)}
+                                        className="m-2"
+                                        variant="success"
+                                    >
+                                        Edit Lyrics
+                                    </Button>
+                                    <Button onClick={() => removeTheLyric()}
+                                        className="m-2"
+                                        variant="danger"
+                                    >
+                                        DELETE {lyric.artist}
+                                    </Button>
+                                </>
+                                {/* :
+                                null
+                        } */}
                     </Card.Footer>
                 </Card>
             </Container>
@@ -157,13 +158,13 @@ const ShowLyric = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)}
             />
-            <NewCommentModal 
+            <NewCommentModal
                 lyric={lyric}
                 show={commentModalShow}
                 user={user}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setCommentModalShow(false)} 
+                handleClose={() => setCommentModalShow(false)}
             />
 
         </>

@@ -27,7 +27,7 @@ export const updateComment = (user, lyricId, updatedComment) => {
     console.log('updateComment in API was hit')
     console.log('this is updatedComment', updatedComment)
 	return axios({
-		url: `${apiUrl}/comments/${lyricId}/${updatedComment.id}`,
+		url: `${apiUrl}/comments/${lyricId}/${updatedComment._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`

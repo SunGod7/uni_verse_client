@@ -40,10 +40,10 @@ const ShowComment = (props) => {
                     
                 </Card.Body>
                 <Card.Footer>
-                    
-                    {/* {
+{/*                     
+                     {
                         user && user._id === lyric.owner._id
-                        ? */}
+                        ?  */}
                         <>
                             <Button 
                                 variant="warning"
@@ -60,7 +60,7 @@ const ShowComment = (props) => {
                         </>
                          {/* :
                     null
-                 }  */}
+                 }   */}
                 </Card.Footer>
             </Card>
             <EditCommentModal

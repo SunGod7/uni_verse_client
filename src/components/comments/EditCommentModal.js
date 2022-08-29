@@ -10,15 +10,11 @@ const EditCommentModal = (props) => {
     } = props
 
     const [comment, setComment] = useState(props.comment)
-
+    //const [comment, setComment] = useState('')
     const handleChange = (e) => {
         setComment(prevComment => {
             let value = e.target.value
             const name = e.target.name
-
-            // console.log('this is the input type', e.target.type)
-            // this handles the checkbox, changing on to true etc
-           
 
             const updatedComment = {
                 [name]: value
