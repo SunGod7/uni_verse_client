@@ -40,10 +40,10 @@ const ShowComment = (props) => {
                     
                 </Card.Body>
                 <Card.Footer>
-{/*                     
+                     
                      {
-                        user && user._id === lyric.owner._id
-                        ?  */}
+                        user && user._id === lyric.owner
+                        ?  
                         <>
                             <Button 
                                 variant="warning"
@@ -58,9 +58,9 @@ const ShowComment = (props) => {
                                 Delete Comment
                             </Button>
                         </>
-                         {/* :
+                         :
                     null
-                 }   */}
+                 }   
                 </Card.Footer>
             </Card>
             <EditCommentModal

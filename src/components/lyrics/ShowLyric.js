@@ -121,9 +121,9 @@ const ShowLyric = (props) => {
                             Give {lyric.artist} a comment!
                         </Button>
 
-                        {/* {
-                            lyric.owner && user && lyric.owner._id === user._id
-                                ? */}
+                        {
+                            lyric.owner && user && lyric.owner === user._id
+                                ?
                                 <>
 
 
@@ -140,9 +140,9 @@ const ShowLyric = (props) => {
                                         DELETE {lyric.artist}
                                     </Button>
                                 </>
-                                {/* :
-                                null
-                        } */}
+                        :
+                                 null
+                         } 
                     </Card.Footer>
                 </Card>
             </Container>
