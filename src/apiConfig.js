@@ -1,7 +1,7 @@
 let apiUrl
 const apiUrls = {
     // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-	production: 'https://uni-verse1.herokuapp.com',
+	production: '',
 	development: 'http://localhost:8000',
 }
 
@@ -12,3 +12,4 @@ if (window.location.hostname === 'localhost') {
 }
 
 export default apiUrl
+//https://uni-verse1.herokuapp.com

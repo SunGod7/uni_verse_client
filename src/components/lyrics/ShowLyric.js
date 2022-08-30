@@ -104,8 +104,8 @@ const ShowLyric = (props) => {
         <>
             <Container className="fluid">
                 <Card bg={'warning'} text={'dark'} border={"dark"} style={{ width: 'fit-content', margin: '15px', justifyContent: 'center' }}>
-                <Card.Img variant="top" src="{{../images/IMG-0715.jpg}}" style={{ height: '150px', width: '150px' }} />
-                    {/* <Card.Header>{lyric.artist}</Card.Header> */}
+                {/* <Card.Img variant="top" src="{./Images/music-note-g9e1d71c10_1920.png}" style={{ height: '150px', width: '150px' }} /> */}
+                    <Card.Header>{lyric.artist}</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <div><small>Artist: {lyric.artist}</small></div>

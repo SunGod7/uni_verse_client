@@ -29,7 +29,7 @@ const Home = (props) => {
 		// <div className='home-page-header'>
 
 		<>
-		  <h1 style={{ color: 'yellow', textAlign: 'center' }}>Welcome To The UNI-VERSE</h1>
+		  <h1 style={{ color: 'yellow', textAlign: 'center' }}>Welcome To The UNI-VERZE</h1>
 			<LyricsIndex />
 		</>
 		// </div>

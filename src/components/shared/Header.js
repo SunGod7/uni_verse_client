@@ -57,7 +57,7 @@ const alwaysOptions = (
 const Header = ({ user }) => (
 	<Navbar className='whole-navbar' bg='light' variant='light' expand='md' style={{borderRadius: '15px', boxShadow: '0.25px 0.25px 5px black, -0.25px -0.25px 5px black'}}>
 		<Navbar.Brand className='m-10' style={{width: '0', paddingLeft: '15px'}}>
-			UNI-VERSE
+			UNI-VERZE
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' style={{marginRight: '15px'}}/>
 		<Navbar.Collapse id='basic-navbar-nav' style={{justifyContent: 'center', width: '100%', paddingRight: '15px'}}>
