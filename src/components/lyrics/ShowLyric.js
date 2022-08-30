@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'//
-//import { Image } from "react-bootstrap";
+//import musicNote from "./Images/music-note-g9e1d71c10_1920.png"
 import { useParams, useNavigate } from 'react-router-dom'//, 
 // useParams will allow us to see our parameters
 // useNavigate will allow us to navigate to a specific page
 
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Card, Button} from 'react-bootstrap'
 
 import LoadingScreen from '../shared/LoadingScreen'
 import { getOneLyric, updateLyric, removeLyric } from '../../api/lyrics'
@@ -14,16 +14,6 @@ import EditLyricModal from './EditLyricModal'
 import NewCommentModal from '../comments/NewCommentModal'
 import ShowComment from '../comments/ShowComment'
 
-// We need to get the Lyric's id from the parameters
-// Then we need to make a request to the api
-// Then we need to display the results in this component
-
-// we'll use a style object to lay out the comment cards
-// const cardContainerLayout = {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     flexFlow: 'row wrap'
-// }
 
 const ShowLyric = (props) => {
     const [lyric, setLyric] = useState(null)
@@ -104,7 +94,8 @@ const ShowLyric = (props) => {
         <>
             <Container className="fluid">
                 <Card bg={'warning'} text={'dark'} border={"dark"} style={{ width: 'fit-content', margin: '15px', justifyContent: 'center' }}>
-                {/* <Card.Img variant="top" src="{./Images/music-note-g9e1d71c10_1920.png}" style={{ height: '150px', width: '150px' }} /> */}
+                    {/* <Card.Img variant="top" src="{./Images/music-note-g9e1d71c10_1920.png}" style={{ height: '150px', width: '150px' }} /> */}
+                    {/* <Image  src={musicNote} className="card-img-top" fluid={true} alt="Music Note" /> */}
                     <Card.Header>{lyric.artist}</Card.Header>
                     <Card.Body>
                         <Card.Text>
@@ -141,9 +132,9 @@ const ShowLyric = (props) => {
                                         DELETE {lyric.artist}
                                     </Button>
                                 </>
-                        :
-                                 null
-                         } 
+                                :
+                                null
+                        }
                     </Card.Footer>
                 </Card>
             </Container>

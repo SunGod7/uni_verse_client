@@ -6,16 +6,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getAllLyrics } from '../../api/lyrics'
 import messages from '../shared/AutoDismissAlert/messages'
 
-// lyricsIndex should make a request to the api
-// To get all lyrics
-// Then display them when it gets them
 
-// style for our card container
-// const cardContainerStyle = {
-//     display: 'flex',
-//     flexFlow: 'row wrap',
-//     justifyContent: 'center'
-// }
 
 const LyricsIndex = (props) => {
     const [lyrics, setLyrics] = useState(null)
@@ -65,11 +56,11 @@ const LyricsIndex = (props) => {
     ))
 
     return (
-        //<div style={ cardContainerStyle }>
+        
             <>
             { lyricCards }
             </>
-       // </div>
+       
     )
     
 }

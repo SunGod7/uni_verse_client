@@ -43,14 +43,7 @@ const CreateLyric = (props) => {
     }
 
 
-
-    //             
-
-    //             
-
-    //         })
-    //     }
-    //     // We'll add a handleSubmit here that makes an api request, then handles the response
+    // We'll add a handleSubmit here that makes an api request, then handles the response
     const handleSubmit = (e) => {
         // e equals the event
         e.preventDefault()

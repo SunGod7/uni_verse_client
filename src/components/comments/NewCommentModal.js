@@ -20,7 +20,7 @@ const NewCommentModal = (props) => {
 
             console.log('this is the input type', e.target.type)
 
-            // this handles the checkbox, changing on to true etc
+            
           
 
             const updatedComment = {
@@ -40,16 +40,16 @@ const NewCommentModal = (props) => {
         createComment(user, lyric._id, comment)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
-            // send a success message to the user
+            //  success message 
             .then(() => {
                 msgAlert({
                     heading: 'Oh Yeah!',
-                    message: 'Great! The lyric loves it!',
+                    message: 'Great! thank you for the love!',
                     variant: 'success'
                 })
             })
             .then(() => triggerRefresh())
-            // if there is an error, tell the user about it
+           
             .catch(() => 
                 msgAlert({
                     heading: 'Oh No!',

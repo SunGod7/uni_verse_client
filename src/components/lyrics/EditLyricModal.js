@@ -50,10 +50,7 @@ const EditLyricModal = (props) => {
                     variant: 'success'
                 })
             })
-            // if everything is successful, we need to trigger our refresh for the show page
-            // this is that setUpdated function in showLyric component
-            // updated is in ShowLyric's useEffect's dependency array
-            // changes to the updated boolean cause ShowLyric's useEffect to run again.
+            
             .then(() => triggerRefresh())
             // if there is an error, tell the user about it
             .catch(() => 
