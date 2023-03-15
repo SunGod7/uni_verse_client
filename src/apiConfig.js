@@ -1,7 +1,8 @@
 let apiUrl
 const apiUrls = {
     // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-	production: 'https://uni-verse1.herokuapp.com',
+	production: 'https://react-crud-api.onrender.com',
+	// production: 'https://uni-verse1.herokuapp.com',
 	development: 'http://localhost:8000',
 }
 
