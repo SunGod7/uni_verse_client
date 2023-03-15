@@ -13,9 +13,9 @@ export const getOneLyric = (id) => {
 // CREATE
 export const createLyric = (user, newLyric) => {
     console.log('createlyric in API was hit')
-    // in our createLyric form, we're building an object
+    // in createLyric form, we're building an object
     // when we pass that object into the api createLyric function
-    // it's going to look like the lyrics in our database
+    // it's going to look like the lyrics in the database
     // we're going to refer to this as a newLyric, so we can just pass the entire object created by the form into an Axios request to our back-end (Lyrics API) and call it 'lyric'
     console.log('this is user', user)
     console.log('this is newLyric', newLyric)
